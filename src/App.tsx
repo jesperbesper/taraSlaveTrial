@@ -12,6 +12,11 @@ type Testimonial = {
   role: string
 }
 
+type SmartResource = {
+  label: string
+  href: string
+}
+
 const stats: Stat[] = [
   { label: 'Launch-ready sections', value: '12' },
   { label: 'Teams shipped', value: '300+' },
@@ -101,11 +106,22 @@ const testimonials: Testimonial[] = [
   },
 ]
 
+const smartDevResources: SmartResource[] = [
+  { label: 'MDN Web Docs', href: 'https://developer.mozilla.org/' },
+  { label: 'web.dev Patterns', href: 'https://web.dev/patterns/' },
+  { label: 'OpenAI Developer Docs', href: 'https://platform.openai.com/docs/overview' },
+  { label: 'Hugging Face Course', href: 'https://huggingface.co/learn' },
+  { label: 'LangChain Playbook', href: 'https://python.langchain.com/docs/use_cases/' },
+  { label: 'Vercel AI SDK', href: 'https://sdk.vercel.ai/docs' },
+  { label: 'Supabase AI Helpers', href: 'https://supabase.com/ai' },
+  { label: 'StackBlitz WebContainers', href: 'https://developer.stackblitz.com/' },
+]
+
 function App() {
   return (
     <main className="app">
       <section className="hero">
-        <p className="eyebrow">Issue #10 · Generic frontpage</p>
+        <p className="eyebrow">Issue #13 · Smart dev hub</p>
         <h1>Launch a polished frontpage without starting from scratch</h1>
         <p className="lead">
           Drop this starter into any React project to kick off a modern landing page. Swap the copy, adjust the accent,
@@ -134,6 +150,27 @@ function App() {
               <span key={logo}>{logo}</span>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="panel smart-links">
+        <div className="section-heading">
+          <p className="eyebrow">Smart development</p>
+          <h2>Keep the smartest build guides one click away</h2>
+          <p>Jump straight into AI-ready patterns, API references, and launch playbooks.</p>
+        </div>
+        <div className="resource-buttons">
+          {smartDevResources.map((resource) => (
+            <a
+              key={resource.label}
+              className="button button--neutral"
+              href={resource.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {resource.label}
+            </a>
+          ))}
         </div>
       </section>
 
