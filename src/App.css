@@ -122,37 +122,6 @@
   font-size: 0.85rem;
 }
 
-.smart-links {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.resource-buttons {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 0.75rem;
-}
-
-.resource-buttons .button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.button--neutral {
-  background: rgba(15, 23, 42, 0.6);
-  border-color: rgba(148, 163, 184, 0.4);
-  color: #f8fafc;
-}
-
-.button--neutral:hover {
-  background: rgba(15, 23, 42, 0.85);
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
 .feature-card {
   background: var(--surface-raised);
   border: 1px solid var(--border);
