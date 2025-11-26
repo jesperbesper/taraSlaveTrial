@@ -40,6 +40,54 @@ const features: FeatureCardProps[] = [
 
 const checklist = ['Pick the hero and supporting sections you need', 'Swap copy, logos, and metrics for your audience', 'Preview in Vite and ship with confidence']
 
+const smartLinks = [
+  {
+    label: 'MDN Web Docs',
+    href: 'https://developer.mozilla.org/',
+    description: 'Authoritative reference for the core web platform.',
+  },
+  {
+    label: 'web.dev Guides',
+    href: 'https://web.dev/learn/',
+    description: 'Deep dives on performance, accessibility, and UX.',
+  },
+  {
+    label: 'StackBlitz Turbo',
+    href: 'https://stackblitz.com/',
+    description: 'Spin up instant web containers to prototype ideas.',
+  },
+  {
+    label: 'CodeSandbox',
+    href: 'https://codesandbox.io/',
+    description: 'Link PRs to live previews and QA collaboratively.',
+  },
+  {
+    label: 'Vercel Docs',
+    href: 'https://vercel.com/docs',
+    description: 'Ship frontend changes with zero-config deployments.',
+  },
+  {
+    label: 'Netlify Platform',
+    href: 'https://docs.netlify.com/',
+    description: 'Automate builds, previews, and site analytics.',
+  },
+  {
+    label: 'Supabase',
+    href: 'https://supabase.com/docs',
+    description: 'Drop-in backend APIs, storage, and auth workflows.',
+  },
+  {
+    label: 'OpenAI Developers',
+    href: 'https://platform.openai.com/docs',
+    description: 'Add AI copilots and tooling into your stack.',
+  },
+  {
+    label: 'GitHub Copilot',
+    href: 'https://github.com/features/copilot',
+    description: 'Pair program with AI suggestions inside your IDE.',
+  },
+]
+
 const testimonials: Testimonial[] = [
   {
     quote: 'We swapped the copy, added our product shots, and were live before lunch.',
@@ -138,6 +186,22 @@ function App() {
               <p className="testimonial__author">{testimonial.author}</p>
               <p className="testimonial__role">{testimonial.role}</p>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="smart-links">
+        <div className="section-heading">
+          <p className="eyebrow">Smart development</p>
+          <h2>Buttons to open your build brain-trust</h2>
+          <p>Jump straight into the docs, sandboxes, and automation platforms teams lean on.</p>
+        </div>
+        <div className="resource-grid">
+          {smartLinks.map((link) => (
+            <a className="button resource-button" key={link.label} href={link.href} target="_blank" rel="noreferrer">
+              <span className="resource-button__label">{link.label}</span>
+              <span className="resource-button__subtext">{link.description}</span>
+            </a>
           ))}
         </div>
       </section>
