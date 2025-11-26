@@ -132,6 +132,10 @@ function App() {
           Drop this starter into any React project to kick off a modern landing page. Swap the copy, adjust the accent,
           and publish a convincing story in an afternoon.
         </p>
+        <p className="cat-story">
+          Nimbus the studio cat naps beside the monitors and keeps watch with a quiet purr, reminding the team to ship
+          with calm, curious energy.
+        </p>
         <div className="hero__actions">
           <a className="button button--primary" href="https://vite.dev/guide/" target="_blank" rel="noreferrer">
             Preview the demo
