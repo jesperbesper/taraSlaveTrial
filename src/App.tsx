@@ -12,9 +12,10 @@ type Testimonial = {
   role: string
 }
 
-type SmartResource = {
+type SmartLink = {
   label: string
   href: string
+  description: string
 }
 
 const stats: Stat[] = [
@@ -45,7 +46,7 @@ const features: FeatureCardProps[] = [
 
 const checklist = ['Pick the hero and supporting sections you need', 'Swap copy, logos, and metrics for your audience', 'Preview in Vite and ship with confidence']
 
-const smartLinks = [
+const smartLinks: SmartLink[] = [
   {
     label: 'MDN Web Docs',
     href: 'https://developer.mozilla.org/',
@@ -57,9 +58,29 @@ const smartLinks = [
     description: 'Deep dives on performance, accessibility, and UX.',
   },
   {
-    label: 'StackBlitz Turbo',
-    href: 'https://stackblitz.com/',
-    description: 'Spin up instant web containers to prototype ideas.',
+    label: 'OpenAI Developers',
+    href: 'https://platform.openai.com/docs',
+    description: 'Add AI copilots and tooling into your stack.',
+  },
+  {
+    label: 'Hugging Face Course',
+    href: 'https://huggingface.co/learn',
+    description: 'Level up on transformer tooling and model hubs.',
+  },
+  {
+    label: 'LangChain Playbooks',
+    href: 'https://python.langchain.com/docs/use_cases/',
+    description: 'Blueprints for AI-powered agents and workflows.',
+  },
+  {
+    label: 'Vercel AI SDK',
+    href: 'https://sdk.vercel.ai/docs',
+    description: 'Ship conversational UIs with streaming primitives.',
+  },
+  {
+    label: 'StackBlitz WebContainers',
+    href: 'https://developer.stackblitz.com/',
+    description: 'Spin up instant full-stack sandboxes in the browser.',
   },
   {
     label: 'CodeSandbox',
@@ -67,24 +88,19 @@ const smartLinks = [
     description: 'Link PRs to live previews and QA collaboratively.',
   },
   {
-    label: 'Vercel Docs',
-    href: 'https://vercel.com/docs',
-    description: 'Ship frontend changes with zero-config deployments.',
-  },
-  {
-    label: 'Netlify Platform',
-    href: 'https://docs.netlify.com/',
-    description: 'Automate builds, previews, and site analytics.',
-  },
-  {
-    label: 'Supabase',
+    label: 'Supabase Docs',
     href: 'https://supabase.com/docs',
     description: 'Drop-in backend APIs, storage, and auth workflows.',
   },
   {
-    label: 'OpenAI Developers',
-    href: 'https://platform.openai.com/docs',
-    description: 'Add AI copilots and tooling into your stack.',
+    label: 'Supabase AI Helpers',
+    href: 'https://supabase.com/ai',
+    description: 'Query your data warehouse with natural language.',
+  },
+  {
+    label: 'Netlify Platform',
+    href: 'https://docs.netlify.com/',
+    description: 'Automate builds, previews, and observability.',
   },
   {
     label: 'GitHub Copilot',
@@ -106,17 +122,6 @@ const testimonials: Testimonial[] = [
   },
 ]
 
-const smartDevResources: SmartResource[] = [
-  { label: 'MDN Web Docs', href: 'https://developer.mozilla.org/' },
-  { label: 'web.dev Patterns', href: 'https://web.dev/patterns/' },
-  { label: 'OpenAI Developer Docs', href: 'https://platform.openai.com/docs/overview' },
-  { label: 'Hugging Face Course', href: 'https://huggingface.co/learn' },
-  { label: 'LangChain Playbook', href: 'https://python.langchain.com/docs/use_cases/' },
-  { label: 'Vercel AI SDK', href: 'https://sdk.vercel.ai/docs' },
-  { label: 'Supabase AI Helpers', href: 'https://supabase.com/ai' },
-  { label: 'StackBlitz WebContainers', href: 'https://developer.stackblitz.com/' },
-]
-
 function App() {
   return (
     <main className="app">
@@ -126,6 +131,10 @@ function App() {
         <p className="lead">
           Drop this starter into any React project to kick off a modern landing page. Swap the copy, adjust the accent,
           and publish a convincing story in an afternoon.
+        </p>
+        <p className="cat-story">
+          Nimbus the studio cat naps beside the monitors and keeps watch with a quiet purr, reminding the team to ship
+          with calm, curious energy.
         </p>
         <div className="hero__actions">
           <a className="button button--primary" href="https://vite.dev/guide/" target="_blank" rel="noreferrer">
@@ -150,27 +159,6 @@ function App() {
               <span key={logo}>{logo}</span>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="panel smart-links">
-        <div className="section-heading">
-          <p className="eyebrow">Smart development</p>
-          <h2>Keep the smartest build guides one click away</h2>
-          <p>Jump straight into AI-ready patterns, API references, and launch playbooks.</p>
-        </div>
-        <div className="resource-buttons">
-          {smartDevResources.map((resource) => (
-            <a
-              key={resource.label}
-              className="button button--neutral"
-              href={resource.href}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {resource.label}
-            </a>
-          ))}
         </div>
       </section>
 
