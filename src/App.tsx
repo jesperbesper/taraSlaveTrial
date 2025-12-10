@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import ProductsPage from './pages/ProductsPage'
 import SupportPage from './pages/SupportPage'
 import AboutPage from './pages/AboutPage'
+import BugDetectionPage from './pages/BugDetectionPage'
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   ['site-nav__link', isActive ? 'site-nav__link--active' : ''].join(' ').trim()
@@ -31,6 +32,9 @@ function Layout() {
             <NavLink to="/support" className={navLinkClass}>
               Customer support
             </NavLink>
+            <NavLink to="/bug-detection" className={navLinkClass}>
+              Report a bug
+            </NavLink>
           </nav>
           <a className="button button--primary site-header__cta" href="mailto:support@launchpad.app">
             Email support
@@ -42,7 +46,8 @@ function Layout() {
 
       <footer className="site-footer">
         <p>
-          © {currentYear} LaunchPad Systems · <Link to="/support">Need help?</Link>
+          © {currentYear} LaunchPad Systems · <Link to="/support">Need help?</Link> ·{' '}
+          <Link to="/bug-detection">Report a bug</Link>
         </p>
         <p>
           <Link to="/about">Meet the creators</Link> · Follow outage updates on{' '}
@@ -63,6 +68,7 @@ function App() {
         <Route path="products" element={<ProductsPage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="support" element={<SupportPage />} />
+        <Route path="bug-detection" element={<BugDetectionPage />} />
       </Route>
     </Routes>
   )
