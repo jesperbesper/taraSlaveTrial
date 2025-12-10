@@ -24,6 +24,7 @@ function Layout() {
             </NavLink>
             <NavLink to="/products" className={navLinkClass}>
               Products
+            </NavLink>
             <NavLink to="/about" className={navLinkClass}>
               About
             </NavLink>
