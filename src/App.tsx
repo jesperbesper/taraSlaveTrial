@@ -2,6 +2,7 @@ import { Link, NavLink, Outlet, Route, Routes } from 'react-router-dom'
 import './App.css'
 import HomePage from './pages/HomePage'
 import SupportPage from './pages/SupportPage'
+import AboutPage from './pages/AboutPage'
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   ['site-nav__link', isActive ? 'site-nav__link--active' : ''].join(' ').trim()
@@ -20,6 +21,9 @@ function Layout() {
             <NavLink to="/" end className={navLinkClass}>
               Home
             </NavLink>
+            <NavLink to="/about" className={navLinkClass}>
+              About
+            </NavLink>
             <NavLink to="/support" className={navLinkClass}>
               Customer support
             </NavLink>
@@ -37,7 +41,7 @@ function Layout() {
           © {currentYear} LaunchPad Systems · <Link to="/support">Need help?</Link>
         </p>
         <p>
-          Follow outage updates on{' '}
+          <Link to="/about">Meet the creators</Link> · Follow outage updates on{' '}
           <a href="https://status.launchpad.app" target="_blank" rel="noreferrer">
             status.launchpad.app
           </a>
@@ -52,6 +56,7 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
+        <Route path="about" element={<AboutPage />} />
         <Route path="support" element={<SupportPage />} />
       </Route>
     </Routes>
