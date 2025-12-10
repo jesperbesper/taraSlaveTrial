@@ -6,6 +6,7 @@ type SupportFormValues = {
   name: string
   email: string
   company: string
+  accountId: string
   topic: string
   details: string
 }
@@ -16,52 +17,66 @@ const contactChannels = [
   {
     label: 'Email',
     value: 'support@launchpad.app',
-    description: '24/7 inbox for account changes, invoices, or urgent help.',
+    description: 'Fastest for detailed walkthroughs · replies under 2 hours on weekdays.',
     href: 'mailto:support@launchpad.app',
   },
   {
-    label: 'Direct line',
+    label: 'Phone',
     value: '+1 (415) 555-0112',
-    description: 'Talk to an on-call support engineer between 8a–8p PT.',
+    description: 'Talk to an on-call specialist 6am–8pm PT, Monday through Saturday.',
     href: 'tel:+14155550112',
   },
   {
-    label: 'Workspace chat',
-    value: 'Slack Connect · #launchpad-support',
-    description: 'Add our shared channel so we can unblock your releases in real time.',
+    label: 'Slack Connect',
+    value: '#launchpad-support',
+    description: 'Enterprise plans get a shared channel with screen-share-ready engineers.',
     href: 'https://slack.com/connect',
   },
 ]
 
 const responseBadges = [
-  { label: 'Avg. first reply', value: '< 22 minutes' },
-  { label: 'Resolution time', value: '95% within 1 business day' },
-  { label: 'Coverage', value: 'Live humans · Mon–Sun' },
+  { label: 'Avg. first reply', value: '2m 14s' },
+  { label: 'Tickets resolved / week', value: '1.4k' },
+  { label: 'CSAT', value: '98% from founders' },
+]
+
+const coverageSnapshot = [
+  { label: 'Weekday response', value: 'Chat 2m · Email 2h' },
+  { label: 'Weekend response', value: '8a–10p PT · on-call overnight' },
+  { label: 'Enterprise SLA', value: 'Critical <15m · High <1h · Normal <4h' },
+]
+
+const coverageHighlights = [
+  'Follow-the-sun teams in SF, Dublin, and Singapore',
+  'Incident bridge lines & retros for every severity 1',
+  'SOC 2 Type II controls plus weekly pen tests',
 ]
 
 const faqs = [
   {
-    question: 'When should I pick "urgent" in the topic field?',
-    answer: 'Use it for production outages, billing holds, or security incidents. Those tickets page our on-call lead instantly.',
+    question: 'When should I mark a request as urgent?',
+    answer:
+      'Use urgent for production outages, billing holds, or security incidents. Those tickets ping the on-call lead instantly.',
   },
   {
-    question: 'How do you keep my ticket details secure?',
+    question: 'Can I include sensitive logs in the form?',
     answer:
-      'All submissions are encrypted at rest, routed through our SOC 2 controls, and scrubbed of secrets before sharing with engineers.',
+      'Yes. Everything is encrypted at rest, scrubbed of access tokens, and only routed to the product squad assigned to your workspace.',
   },
   {
-    question: 'Can I book a standing office-hours session?',
+    question: 'Do you offer recurring office hours or success planning?',
     answer:
-      'Yes—pick "Success planning" as the topic and suggest a cadence in the message. Our customer success team will confirm within one business day.',
+      'Absolutely—choose "Partnership" as the topic, share your preferred cadence, and your CSM will propose a standing slot within one business day.',
   },
 ]
 
-const topics = ['Billing or invoices', 'Integrations & APIs', 'Bug or outage report', 'Security review', 'Success planning']
+const topics = ['Billing question', 'Technical troubleshooting', 'Security & compliance', 'Feature request', 'Partnership']
 
 const initialFormValues: SupportFormValues = {
   name: '',
   email: '',
   company: '',
+  accountId: '',
   topic: '',
   details: '',
 }
@@ -116,11 +131,11 @@ export default function SupportPage() {
   return (
     <main className="app support-page">
       <section className="support-hero">
-        <p className="eyebrow">Customer support</p>
-        <h1>Help when launches are on the line</h1>
+        <p className="eyebrow">Issue #18 · Customer support hub</p>
+        <h1>Talk to a product specialist in minutes</h1>
         <p className="lead">
-          Our support engineers sit next to the product team, so you get answers from the people who ship the features you
-          rely on.
+          Share context once, loop in a human instantly, and track every SLA inside one workspace. Our support engineers sit next to the product team,
+          so the people who ship features respond to your requests.
         </p>
         <div className="support-meta">
           {responseBadges.map((badge) => (
@@ -138,8 +153,7 @@ export default function SupportPage() {
             <p className="eyebrow">Contact information</p>
             <h2>Reach us the moment you get stuck</h2>
             <p className="contact-card__description">
-              Message us through the channel that matches your urgency. Every path routes into the same queue so nothing slips
-              through.
+              Pick the channel that matches your urgency. Everything routes into the same queue and tags the engineer on call.
             </p>
             <dl className="contact-list">
               {contactChannels.map((channel) => (
@@ -154,10 +168,26 @@ export default function SupportPage() {
                 </div>
               ))}
             </dl>
+            <div className="coverage-card">
+              <p className="coverage-card__eyebrow">Coverage snapshot</p>
+              <dl className="coverage-card__list">
+                {coverageSnapshot.map((item) => (
+                  <div key={item.label}>
+                    <dt>{item.label}</dt>
+                    <dd>{item.value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <ul className="coverage-pill-grid">
+                {coverageHighlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+            </div>
             <div className="contact-card__footnote">
               <p>
-                Prefer status updates? <a href="https://status.launchpad.app">status.launchpad.app</a> shows live incidents and
-                planned maintenance.
+                Prefer status updates? <a href="https://status.launchpad.app">status.launchpad.app</a> shows incidents and planned maintenance in real
+                time.
               </p>
             </div>
           </div>
@@ -203,6 +233,17 @@ export default function SupportPage() {
               />
             </label>
             <label className="support-form__group">
+              <span>Account ID (optional)</span>
+              <input
+                type="text"
+                name="accountId"
+                autoComplete="off"
+                value={formValues.accountId}
+                onChange={handleChange}
+                placeholder="ACME-4291"
+              />
+            </label>
+            <label className="support-form__group">
               <span>Topic*</span>
               <select name="topic" required value={formValues.topic} onChange={handleChange}>
                 <option value="" disabled hidden>
@@ -238,12 +279,8 @@ export default function SupportPage() {
             </button>
           </div>
           {(status === 'success' || error) && (
-            <p
-              className={`support-form__status${error ? ' support-form__status--error' : ''}`}
-              role="status"
-              aria-live="polite"
-            >
-              {error ? error : 'Thanks for the context. Expect a reply in under an hour.'}
+            <p className={`support-form__status${error ? ' support-form__status--error' : ''}`} role="status" aria-live="polite">
+              {error ? error : 'Thanks! Expect a confirmation email within a few minutes.'}
             </p>
           )}
         </form>

@@ -1,6 +1,7 @@
 import { Link, NavLink, Outlet, Route, Routes } from 'react-router-dom'
 import './App.css'
 import HomePage from './pages/HomePage'
+import ProductsPage from './pages/ProductsPage'
 import SupportPage from './pages/SupportPage'
 import AboutPage from './pages/AboutPage'
 
@@ -21,6 +22,8 @@ function Layout() {
             <NavLink to="/" end className={navLinkClass}>
               Home
             </NavLink>
+            <NavLink to="/products" className={navLinkClass}>
+              Products
             <NavLink to="/about" className={navLinkClass}>
               About
             </NavLink>
@@ -56,6 +59,7 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
+        <Route path="products" element={<ProductsPage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="support" element={<SupportPage />} />
       </Route>
