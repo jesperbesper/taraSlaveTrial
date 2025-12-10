@@ -11,10 +11,12 @@ Issue #7 bootstraps this repository with a modern React 19 + TypeScript stack po
 
 ```bash
 npm install        # install dependencies
+npm run server     # start the auth API on http://localhost:4000
 npm run dev        # start the Vite dev server on http://localhost:5173
 ```
 
 The dev server comes with fast refresh enabled. Stop it with `Ctrl+C`.
+The authentication API runs independently; keep it running in a second terminal during development.
 
 ## Available scripts
 
@@ -24,6 +26,7 @@ The dev server comes with fast refresh enabled. Stop it with `Ctrl+C`.
 | `npm run build` | Type-checks and produces a production-ready bundle in `dist/`. |
 | `npm run lint` | Runs ESLint (flat config) against all TypeScript/TSX files. |
 | `npm run preview` | Serves the production bundle locally for smoke testing. |
+| `npm run server` | Starts the JSON Web Token auth API with HTTP-only cookies. |
 
 ## Project structure
 
@@ -52,6 +55,10 @@ VITE_FEATURE_FLAG=my-new-feature
 ```
 
 Restart the dev server after changing env files.
+
+## Authentication
+
+The app now boots into a secure login/register page. Accounts are stored in-memory on the Node API located at `server/index.js`. Successful authentication issues a signed JSON Web Token that is stored inside an HTTP-only `session` cookie, which the frontend consumes through the `/api/auth/*` endpoints. When running locally, Vite proxies `/api` requests to `http://localhost:4000` so you only need to interact with relative URLs from the browser.
 
 ## Next steps
 

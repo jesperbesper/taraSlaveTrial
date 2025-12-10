@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link, NavLink, Outlet, Route, Routes } from 'react-router-dom'
 import './App.css'
 import HomePage from './pages/HomePage'
@@ -5,12 +6,28 @@ import ProductsPage from './pages/ProductsPage'
 import SupportPage from './pages/SupportPage'
 import AboutPage from './pages/AboutPage'
 import BugDetectionPage from './pages/BugDetectionPage'
+import AuthPage from './pages/AuthPage'
+import ProtectedRoute from './components/ProtectedRoute'
+import { useAuth } from './context/AuthContext'
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   ['site-nav__link', isActive ? 'site-nav__link--active' : ''].join(' ').trim()
 
 function Layout() {
   const currentYear = new Date().getFullYear()
+  const { user, logout } = useAuth()
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
+  const displayName = user?.name ?? 'LaunchPad Pilot'
+  const displayEmail = user?.email ?? 'session@launchpad.app'
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true)
+    try {
+      await logout()
+    } finally {
+      setIsLoggingOut(false)
+    }
+  }
 
   return (
     <div className="site-shell">
@@ -39,6 +56,21 @@ function Layout() {
           <a className="button button--primary site-header__cta" href="mailto:support@launchpad.app">
             Email support
           </a>
+          <div className="site-header__session" aria-live="polite">
+            <div className="session-chip">
+              <span className="session-chip__label">Signed in as</span>
+              <span className="session-chip__name">{displayName}</span>
+              <span className="session-chip__email">{displayEmail}</span>
+            </div>
+            <button
+              className="button button--ghost session-chip__action"
+              type="button"
+              onClick={handleLogout}
+              disabled={isLoggingOut}
+            >
+              {isLoggingOut ? 'Ending session…' : 'Log out'}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -63,7 +95,8 @@ function Layout() {
 function App() {
   return (
     <Routes>
-      <Route element={<Layout />}>
+      <Route path="/login" element={<AuthPage />} />
+      <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
         <Route index element={<HomePage />} />
         <Route path="products" element={<ProductsPage />} />
         <Route path="about" element={<AboutPage />} />
