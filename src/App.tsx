@@ -7,6 +7,7 @@ import SupportPage from './pages/SupportPage'
 import AboutPage from './pages/AboutPage'
 import BugDetectionPage from './pages/BugDetectionPage'
 import AuthPage from './pages/AuthPage'
+import ReviewsPage from './pages/ReviewsPage'
 import ProtectedRoute from './components/ProtectedRoute'
 import { useAuth } from './context/AuthContext'
 
@@ -42,6 +43,9 @@ function Layout() {
             </NavLink>
             <NavLink to="/products" className={navLinkClass}>
               Products
+            </NavLink>
+            <NavLink to="/reviews" className={navLinkClass}>
+              Reviews
             </NavLink>
             <NavLink to="/about" className={navLinkClass}>
               About
@@ -99,6 +103,7 @@ function App() {
       <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
         <Route index element={<HomePage />} />
         <Route path="products" element={<ProductsPage />} />
+        <Route path="reviews" element={<ReviewsPage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="support" element={<SupportPage />} />
         <Route path="bug-detection" element={<BugDetectionPage />} />
