@@ -1,6 +1,7 @@
 import { Link, NavLink, Outlet, Route, Routes } from 'react-router-dom'
 import './App.css'
 import HomePage from './pages/HomePage'
+import ProductsPage from './pages/ProductsPage'
 import SupportPage from './pages/SupportPage'
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -19,6 +20,9 @@ function Layout() {
           <nav className="site-nav" aria-label="Primary">
             <NavLink to="/" end className={navLinkClass}>
               Home
+            </NavLink>
+            <NavLink to="/products" className={navLinkClass}>
+              Products
             </NavLink>
             <NavLink to="/support" className={navLinkClass}>
               Customer support
@@ -52,6 +56,7 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
+        <Route path="products" element={<ProductsPage />} />
         <Route path="support" element={<SupportPage />} />
       </Route>
     </Routes>
